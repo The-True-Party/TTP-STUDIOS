@@ -1,0 +1,84 @@
+//CSS Main//
+
+html {
+    background-color: #000000; /* Black background */
+}
+
+body {
+    background-color: #000000;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    color: #e0e0e0; /* Light gray text for contrast */
+}
+
+header#addresstop {
+    background-color: #ff6f00; /* Orange */
+    color: #ffffff;
+    text-align: center;
+    padding: 0.5em;
+}
+
+header#addresstop h2,
+header#addresstop h3 {
+    margin: 0;
+}
+
+nav#top {
+    background-color: #0d47a1; /* Deep Blue */
+    font-weight: bold;
+    font-variant: small-caps;
+    font-size: 120%;
+    padding: 0.5em;
+    text-align: center;
+}
+
+nav#top a:link,
+nav#top a:visited {
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0 1em;
+}
+
+nav#top a:hover {
+    background-color: #b71c1c; /* Red */
+}
+
+main {
+    padding: 1em;
+}
+
+article {
+    padding: 1em;
+    border-bottom: 1px solid #333333;
+}
+
+article#homepage h1,
+article#meet h1,
+article#test h1,
+article#hours h1 {
+    color: #42a5f5; /* Light blue */
+    font-size: 150%;
+}
+
+article#homepage h2,
+article#meet h2,
+article#hours h2 {
+    color: #ff6f00; /* Orange */
+    font-size: 130%;
+}
+
+article#homepage h3,
+article#meet h3 {
+    color: #e53935; /* Bright Red */
+    font-size: 110%;
+    background-color: rgba(229, 57, 53, 0.2); /* Transparent red background */
+    padding: 0.5em;
+}
+
+article#homepage p,
+article#meet p,
+article#test p,
+article#hours p {
+    font-size:
