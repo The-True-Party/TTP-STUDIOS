@@ -1116,20 +1116,57 @@ NGA OTHERS (Listed as Temporal Ships as they all come from Future speculative ti
 <!--COLLAPSIABLE CODE STARTS HERE-->
 
 <script>
-var acc = document.getElementsByClassName("accordion");
-var i;
+(function () {
+    var accordions = document.querySelectorAll(".accordion");
 
-for (i = 0; i < acc.length; i++) {
-  acc[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    var panel = this.nextElementSibling;
-    if (panel.style.maxHeight) {
-      panel.style.maxHeight = null;
-    } else {
-      panel.style.maxHeight = panel.scrollHeight + "px";
-    } 
-  });
-}
+    // Recalculate the height of every open ancestor panel when a nested
+    // accordion changes, so expanded entries are not clipped.
+    function updateOpenParentPanels(panel) {
+        var parentPanel = panel.parentElement.closest(".panel");
+
+        while (parentPanel) {
+            var parentButton = parentPanel.previousElementSibling;
+
+            if (parentButton &&
+                parentButton.classList.contains("accordion") &&
+                parentButton.classList.contains("active")) {
+                parentPanel.style.maxHeight = parentPanel.scrollHeight + "px";
+            }
+
+            parentPanel = parentPanel.parentElement.closest(".panel");
+        }
+    }
+
+    accordions.forEach(function (button) {
+        button.addEventListener("click", function () {
+            var panel = this.nextElementSibling;
+
+            if (!panel || !panel.classList.contains("panel")) {
+                return;
+            }
+
+            this.classList.toggle("active");
+
+            if (this.classList.contains("active")) {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            } else {
+                panel.style.maxHeight = null;
+            }
+
+            updateOpenParentPanels(panel);
+        });
+    });
+
+    // A nested panel animates for 0.2 seconds. Recalculate its open parents
+    // again when that animation finishes, using the panel's final height.
+    document.addEventListener("transitionend", function (event) {
+        if (event.target.classList &&
+            event.target.classList.contains("panel") &&
+            event.propertyName === "max-height") {
+            updateOpenParentPanels(event.target);
+        }
+    });
+})();
 </script>
 </CENTER>
        
@@ -2075,9 +2112,3 @@ NGA OTHERS
 </body>
 </html>
     
-    
-    
-
-
-</body>
-</html>
